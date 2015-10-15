@@ -1,18 +1,13 @@
-<html>
-	<head>
-		<title>Suyang's blog</title>
-	</head>
-	<body>
-		<div>
-			<h1><a href="">Suyang Blog Django Girls Learning Tool</a></h1>
-		</div>
+{% extends "blog/base.html" %}
 
-		{% for post in posts %}
-			<div>
-				<h1><a href="">{{ post.title }}</a></h1>
-				<p>piblished: {{ post.published_date }}</p>
-				<p>{{ post.text|linebreaks }}</p>
+{% block content %}
+	{% for post in posts %}
+		<div class="post">
+			<div class="date">
+				{{ post.published_date }}				
 			</div>
-		{% endfor %}
-	</body>
-</html>
+			<h1><a href="{% url "post_detail" pk=post.pk %}">{{ post.title }}</a></h1>
+			<p>{{ post.text|linebreaks }}</p>
+		</div>
+	{% endfor %}
+{% endblock content %}
